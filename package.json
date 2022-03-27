@@ -1,0 +1,24 @@
+{
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build && next export",
+    "start": "next start"
+  },
+  "dependencies": {
+    "@emotion/react": "^11.7.1",
+    "@emotion/styled": "^11.6.0",
+    "@mui/icons-material": "^5.4.2",
+    "@mui/material": "^5.4.1",
+    "@react-hook/window-size": "^3.0.7",
+    "@svgdotjs/svg.js": "^3.1.2",
+    "next": "latest",
+    "panzoom": "^9.4.2",
+    "react": "17.0.2",
+    "react-dom": "17.0.2",
+    "react-inlinesvg": "^2.3.0"
+  },
+  "devDependencies": {
+    "@svgr/webpack": "^6.2.1"
+  }
+}
