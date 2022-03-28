@@ -7,8 +7,9 @@ import Link from 'next/link'
 import GitHubIcon from '@mui/icons-material/GitHub';
 
 const pages = [
-    {'name':'Slides'    ,'href':''},
-    {'name':'Gallery'    ,'href':'gallery'},
+    {'name':'Gallery'    ,'href':''},
+    {'name':'simple'    ,'href':'test'},
+    {'name':'Slide'    ,'href':'slide'},
 ]
 
 
