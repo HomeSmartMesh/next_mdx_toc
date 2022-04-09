@@ -4,6 +4,8 @@ import remarkToc from 'remark-toc'
 import remarkGfm from 'remark-gfm'
 import remarkRehype from 'remark-rehype'
 import rehypeSlug from 'rehype-slug'
+import rehypeHighlight from 'rehype-highlight'
+import 'highlight.js/styles/default.css'
 import {s} from 'hastscript'
 import rehypeAutolinkHeadings from 'rehype-autolink-headings'
 import { promises as fs } from 'fs'
@@ -29,7 +31,6 @@ const content = s(
   )
 
 export default function RemotePage({ source }) {
-    console.log(Object.keys(source))
   return (
     <>
         <Typography variant="h3">{source.frontmatter.title}</Typography>
@@ -46,7 +47,7 @@ export async function getStaticProps() {
         {
             mdxOptions: {
                 remarkPlugins: [remarkGfm, remarkToc,remarkRehype],
-                rehypePlugins: [rehypeSlug, 
+                rehypePlugins: [rehypeSlug, rehypeHighlight,
                     [
                         rehypeAutolinkHeadings,
                         {
