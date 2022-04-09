@@ -6,12 +6,9 @@ html * {
   font-family: Nunito, sans-serif;
 }
 
-.icon {
-  display: inline-block;
-  width:30px;
-  background-image: url(link.svg);
-  background-color:red
+.icon{
+  fill-opacity:0;
 }
-.icon:hover {
-  background-color: yellow;
+.icon:hover{
+  fill-opacity:1;
 }
