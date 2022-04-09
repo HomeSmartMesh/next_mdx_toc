@@ -1,0 +1,52 @@
+---
+title: Remote MDX
+---
+This page is about "{title}"
+
+The `.mdx` file is loaded with `fs.readFile()` from `getStaticProps()`
+# React Component Slide
+it is possible to add a react Slide component like this without any import as the component is handled by the js mdx loader page
+```jsx
+<PanZoomSlide src="tiger.svg" menu/>
+```
+<PanZoomSlide src="tiger.svg" menu/>
+
+# Github Flavored Markdown
+
+* https://github.com/HomeSmartMesh/next_mdx_toc
+* [x] this is done
+* [ ] this is not done
+
+
+## test highlight
+```js
+const components = { PanZoomSlide }
+```
+
+## Table
+
+| Header 1      | Header 2      | Header 3  |
+| ------------- |:-------------:| -----:|
+| col 1       | cell 2 | cell 3 |
+
+## long list section test
+
+Line 1
+
+Line 2
+
+Line 3
+
+Line 4
+
+Line 5
+
+Line 6
+
+# Title
+intro
+## sub title 1
+text
+## sub title 2
+text
+## finish
