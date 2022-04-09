@@ -6,12 +6,13 @@ import remarkRehype from 'remark-rehype'
 import rehypeSlug from 'rehype-slug'
 import rehypeHighlight from 'rehype-highlight'
 import 'highlight.js/styles/default.css'
+import {visit} from 'unist-util-visit'
 import {s} from 'hastscript'
 import rehypeAutolinkHeadings from 'rehype-autolink-headings'
 import { promises as fs } from 'fs'
-import {Typography} from '@mui/material';
 
 import PanZoomSlide from '../components/PanZoomSlide'
+import MenuTree from '../components/MenuTree'
 
 const components = { PanZoomSlide }
 
@@ -30,26 +31,88 @@ const content = s(
     })
   )
 
-export default function RemotePage({ source }) {
+export default function RemotePage({ source,headings }) {
   return (
     <>
       {source.frontmatter.title&&
       <title>{source.frontmatter.title}</title>
       }
+      <MenuTree nodes={headings}/>
       <MDXRemote {...source} components={components} scope={source.frontmatter}/>
     </>
   )
 }
 
+let headings = []
+function rehypeHeadings() {
+  let count = 0
+  return (tree) => {
+    visit(tree, 'element', (node) => {
+      if (['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'h7', 'h8'].includes(node.tagName)) {
+        const text_element = node.children.find(element => (element.type == "text"))
+        if(text_element){
+          headings.push(
+            {
+              level:Number(node.tagName.charAt(1)),
+              text:text_element.value,
+              href:node.properties.id,
+              id:String(count++)
+            })
+        }
+      }
+    })
+  }
+}
+
+
+function find_parent(index){
+  const element_level = headings[index].level
+  if(index == 0){
+    return null
+  }else{
+    for(let rev_i = index-1;rev_i>=0;rev_i--){
+      if(headings[rev_i].level<element_level){
+        return headings[rev_i]
+      }
+    }
+  }
+}
+
+function heading_list_to_tree(headings){
+  for(let element of headings){
+    element.children =[]
+  }
+
+  let tree = []
+  
+  for(let index=0; index<headings.length;index++){
+    let element = headings[index]
+    let parent = find_parent(index)
+    if(parent){
+      parent.children.push(element)
+    }else{
+      tree.push(element)
+    }
+  }
+
+  for(let element of headings){
+    if (element.children.length == 0){
+      delete element.children
+    }
+  }
+  return tree
+}
+
 export async function getStaticProps() {
   // MDX text - can be from a local file, database, anywhere
-  const source = await fs.readFile("public/remote.mdx");
+  headings = []
+  const source = await fs.readFile("public/toc.mdx");
   const mdxSource = await serialize(
         source,
         {
             mdxOptions: {
-                remarkPlugins: [remarkGfm, remarkRehype],
-                rehypePlugins: [rehypeSlug, rehypeHighlight,
+                remarkPlugins: [remarkGfm, remarkToc,remarkRehype],
+                rehypePlugins: [rehypeSlug, rehypeHighlight,rehypeHeadings,
                     [
                         rehypeAutolinkHeadings,
                         {
@@ -62,5 +125,6 @@ export async function getStaticProps() {
             parseFrontmatter: true
         }
     )
-  return { props: { source: mdxSource } }
+  const heading_tree = heading_list_to_tree(headings)
+  return { props: { source: mdxSource, headings:heading_tree } }
 }

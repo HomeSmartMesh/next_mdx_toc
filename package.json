@@ -11,6 +11,7 @@
     "@mdx-js/loader": "^2.1.0",
     "@mdx-js/react": "^1.6.18",
     "@mui/icons-material": "^5.4.2",
+    "@mui/lab": "^5.0.0-alpha.76",
     "@mui/material": "^5.4.1",
     "@next/mdx": "^9.1.1",
     "@react-hook/window-size": "^3.0.7",

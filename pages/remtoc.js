@@ -33,8 +33,10 @@ const content = s(
 export default function RemotePage({ source }) {
   return (
     <>
-        <Typography variant="h3">{source.frontmatter.title}</Typography>
-        <MDXRemote {...source} components={components} scope={source.frontmatter}/>
+      {source.frontmatter.title&&
+      <title>{source.frontmatter.title}</title>
+      }
+      <MDXRemote {...source} components={components} scope={source.frontmatter}/>
     </>
   )
 }
@@ -60,6 +62,5 @@ export async function getStaticProps() {
             parseFrontmatter: true
         }
     )
-  console.log(Object.keys(mdxSource))
   return { props: { source: mdxSource } }
 }

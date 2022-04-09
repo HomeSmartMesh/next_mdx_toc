@@ -8,8 +8,9 @@ import GitHubIcon from '@mui/icons-material/GitHub';
 
 const pages = [
     {'name':'Remote'    ,'href':''},
-    {'name':'Static'    ,'href':'static'},
-    {'name':'Toc'    ,'href':'toc'},
+    {'name':'Page'    ,'href':'page'},
+    {'name':'Toc List'    ,'href':'toc'},
+    {'name':'Toc Tree'    ,'href':'tree'},
     {'name':'remToc'    ,'href':'remtoc'},
 ]
 

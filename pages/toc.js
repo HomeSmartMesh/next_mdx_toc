@@ -10,9 +10,9 @@ import {visit} from 'unist-util-visit'
 import {s} from 'hastscript'
 import rehypeAutolinkHeadings from 'rehype-autolink-headings'
 import { promises as fs } from 'fs'
-import {Typography} from '@mui/material';
 
 import PanZoomSlide from '../components/PanZoomSlide'
+import MenuList from '../components/MenuList'
 
 const components = { PanZoomSlide }
 
@@ -31,11 +31,15 @@ const content = s(
     })
   )
 
-export default function RemotePage({ source }) {
+export default function RemotePage({ source,headings }) {
+  console.log(headings)
   return (
     <>
-        <Typography variant="h3">{source.frontmatter.title}</Typography>
-        <MDXRemote {...source} components={components} scope={source.frontmatter}/>
+      {source.frontmatter.title&&
+      <title>{source.frontmatter.title}</title>
+      }
+      <MenuList pages={headings}/>
+      <MDXRemote {...source} components={components} scope={source.frontmatter}/>
     </>
   )
 }
@@ -47,21 +51,16 @@ function rehypeHeadings() {
       if (['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'h7', 'h8'].includes(node.tagName)) {
         const text_element = node.children.find(element => (element.type == "text"))
         if(text_element){
-          headings.push({level:Number(node.tagName.charAt(1)),text:text_element.value})
+          headings.push({level:Number(node.tagName.charAt(1)),text:text_element.value,href:node.properties.id})
         }
       }
     })
   }
 }
 
-function heading_list_to_tree(headings){
-  let htree = {}
-
-  return htree
-}
-
 export async function getStaticProps() {
   // MDX text - can be from a local file, database, anywhere
+  headings = []
   const source = await fs.readFile("public/toc.mdx");
   const mdxSource = await serialize(
         source,
@@ -81,7 +80,5 @@ export async function getStaticProps() {
             parseFrontmatter: true
         }
     )
-  console.log(headings)
-  const heading_tree = heading_list_to_tree(headings)
-  return { props: { source: mdxSource, headings:heading_tree } }
+  return { props: { source: mdxSource, headings:headings } }
 }
