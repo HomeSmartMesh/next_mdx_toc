@@ -13,5 +13,5 @@ module.exports =     withMDX({
     return config;
   },
   outDir: 'docs',
-  basePath: '',
+  basePath: '/next_mdx_toc',
 })
