@@ -1,18 +1,28 @@
 ---
 title: Big World
 ---
+The title of this page is "{title}"
+# Table of contents
 
-# Remote {title}
-hello world slides
-
-## Subheader slide
+# React Component Slide
+it is possible to add a react Slide component like this without any import as the component is handled by the js mdx loader page
+```jsx
+<PanZoomSlide src="tiger.svg" menu/>
+```
 <PanZoomSlide src="tiger.svg" menu/>
 
-## another sub
-```js
-const components = {PanZoomSlide}
-```
-which content goes here ?
+# Github Flavored Markdown
+
+* https://github.com/HomeSmartMesh/next_mdx_toc
+* [x] this is done
+* [ ] this is not done
+## Table
+
+| Header 1      | Header 2      | Header 3  |
+| ------------- |:-------------:| -----:|
+| col 1       | cell 2 | cell 3 |
+
+## long list section test
 
 Line 1
 
@@ -26,9 +36,10 @@ Line 5
 
 Line 6
 
-# Title important
+# Title
 intro
-## getting started
-lots of complicated stuff
+## sub title 1
+text
+## sub title 2
+text
 ## finish
-it was very simple
