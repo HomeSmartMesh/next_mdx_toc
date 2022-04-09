@@ -41,7 +41,7 @@ export default function RemotePage({ source }) {
 
 export async function getStaticProps() {
   // MDX text - can be from a local file, database, anywhere
-  const source = await fs.readFile("public/remote.mdx");
+  const source = await fs.readFile("public/remark_toc.mdx");
   const mdxSource = await serialize(
         source,
         {
@@ -60,5 +60,6 @@ export async function getStaticProps() {
             parseFrontmatter: true
         }
     )
+  console.log(Object.keys(mdxSource))
   return { props: { source: mdxSource } }
 }
