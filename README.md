@@ -7,7 +7,11 @@
 # Reference
 * takeover from https://github.com/WebSVG/next-svg
 * mdx in nextjs : https://nextjs.org/docs/advanced-features/using-mdx
+* mdx remote : https://github.com/hashicorp/next-mdx-remote
+* mdxjs table of components : https://mdxjs.com/table-of-components/
+
 
 mdx dependencies
 * remark : https://github.com/remarkjs/remark
 * rehype : https://github.com/rehypejs/rehype
+
