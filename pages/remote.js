@@ -22,12 +22,7 @@ export async function getStaticProps() {
   const mdxSource = await serialize(
         source,
         {
-            parseFrontmatter: true,
-            mdxOptions: {
-                remarkPlugins: [],
-                rehypePlugins: [],
-                hastPlugins: [],
-            },
+            parseFrontmatter: true
         }
     )
   return { props: { source: mdxSource } }
