@@ -7,9 +7,9 @@ import Link from 'next/link'
 import GitHubIcon from '@mui/icons-material/GitHub';
 
 const pages = [
-    {'name':'Gallery'    ,'href':''},
-    {'name':'simple'    ,'href':'test'},
+    {'name':'Simple'    ,'href':''},
     {'name':'Slide'    ,'href':'slide'},
+    {'name':'Remote'    ,'href':'remote'},
 ]
 
 
@@ -31,7 +31,7 @@ export default function Nav() {
             ))}
             <Box sx={{ flexGrow: 0 }}>
                 <Tooltip title="Open in Github">
-                    <a href="https://github.com/WebSVG/next-svg" target="_blank" rel="noopener">
+                    <a href="https://github.com/HomeSmartMesh/next_mdx_toc" target="_blank" rel="noopener">
                         <Button sx={{ my: 2, color: 'white', display: 'block' }}>
                             <GitHubIcon/>
                         </Button>
