@@ -2,6 +2,7 @@ import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import {Button,CssBaseline,Tooltip} from '@mui/material';
+import {Slide, useScrollTrigger} from "@material-ui/core";
 import Typography from '@mui/material/Typography';
 import Link from 'next/link'
 import GitHubIcon from '@mui/icons-material/GitHub';
@@ -15,9 +16,11 @@ const pages = [
 ]
 
 export default function Nav() {
+    const trigger = useScrollTrigger();
     return (
     <Box sx={{ display:'flex' }}>
         <CssBaseline/>
+        <Slide appear={false} direction="down" in={!trigger}>
             <AppBar position="fixed" sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 }}>
                 <Toolbar >
                     {pages.map((page,index)=>(
@@ -42,6 +45,7 @@ export default function Nav() {
                 </Box>
                 </Toolbar>
             </AppBar>
+        </Slide>
         <Toolbar />
     </Box>
   );
