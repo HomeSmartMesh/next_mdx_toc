@@ -6,13 +6,12 @@ import remarkRehype from 'remark-rehype'
 import rehypeSlug from 'rehype-slug'
 import rehypeHighlight from 'rehype-highlight'
 import 'highlight.js/styles/default.css'
-import {visit} from 'unist-util-visit'
 import {s} from 'hastscript'
 import rehypeAutolinkHeadings from 'rehype-autolink-headings'
 import { promises as fs } from 'fs'
+import {Typography} from '@mui/material';
 
 import PanZoomSlide from '../components/PanZoomSlide'
-import MenuList from '../components/MenuList'
 
 const components = { PanZoomSlide }
 
@@ -31,42 +30,26 @@ const content = s(
     })
   )
 
-export default function RemotePage({ source,headings }) {
+export default function RemotePage({ source }) {
   return (
     <>
       {source.frontmatter.title&&
       <title>{source.frontmatter.title}</title>
       }
-      <MenuList entries={headings}/>
       <MDXRemote {...source} components={components} scope={source.frontmatter}/>
     </>
   )
 }
 
-let headings = []
-function rehypeHeadings() {
-  return (tree) => {
-    visit(tree, 'element', (node) => {
-      if (['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'h7', 'h8'].includes(node.tagName)) {
-        const text_element = node.children.find(element => (element.type == "text"))
-        if(text_element){
-          headings.push({level:Number(node.tagName.charAt(1)),text:text_element.value,href:node.properties.id})
-        }
-      }
-    })
-  }
-}
-
 export async function getStaticProps() {
   // MDX text - can be from a local file, database, anywhere
-  headings = []
-  const source = await fs.readFile("public/toc_list.mdx");
+  const source = await fs.readFile("public/remote.mdx");
   const mdxSource = await serialize(
         source,
         {
             mdxOptions: {
                 remarkPlugins: [remarkGfm, remarkRehype],
-                rehypePlugins: [rehypeSlug, rehypeHighlight,rehypeHeadings,
+                rehypePlugins: [rehypeSlug, rehypeHighlight,
                     [
                         rehypeAutolinkHeadings,
                         {
@@ -79,5 +62,5 @@ export async function getStaticProps() {
             parseFrontmatter: true
         }
     )
-  return { props: { source: mdxSource, headings:headings } }
+  return { props: { source: mdxSource } }
 }

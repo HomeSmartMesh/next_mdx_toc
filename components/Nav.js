@@ -7,10 +7,10 @@ import Link from 'next/link'
 import GitHubIcon from '@mui/icons-material/GitHub';
 
 const pages = [
-    {'name':'Remote'    ,'href':''},
-    {'name':'Toc Tree'    ,'href':'toc_tree'},
+    {'name':'Toc Tree'    ,'href':''},
     {'name':'Toc List'    ,'href':'toc_list'},
     {'name':'remark Toc'    ,'href':'remtoc'},
+    {'name':'Remote'    ,'href':'remote'},
     {'name':'Static'    ,'href':'static'},
 ]
 
