@@ -4,9 +4,9 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 
 export default function MenuTree({nodes}){
-const drawerWidth = 300
+  const drawerWidth = 300
 
-const renderTree = (nodes) => (
+  const renderTree = (nodes) => (
     nodes.map((node,index) => (
       <TreeItem 
         key={index}
@@ -21,6 +21,7 @@ const renderTree = (nodes) => (
   )
 
   return(
+    
     <Drawer
         sx={{
           maxWidth: drawerWidth,

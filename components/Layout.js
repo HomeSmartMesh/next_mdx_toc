@@ -6,7 +6,7 @@ const Layout = ({ children }) => {
     <>
       <Nav />
       <main >
-        <Box mx={1} mt={9}>
+        <Box mx={1} >
           {children}
         </Box>
       </main>
