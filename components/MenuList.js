@@ -3,7 +3,7 @@ import {Toolbar, Divider, List, ListItem,
 import Link from 'next/link'
 
 
-export default function MenuList({pages}){
+export default function MenuList({entries}){
 const drawerWidth = 300
 return(
     <Drawer
@@ -21,10 +21,10 @@ return(
         <Toolbar />
         <Divider />
         <List>
-          {pages.map((page, index) => (
-              <Link href={`#${page.href}`} key={index}>
-                <ListItem button key={page.text}>
-                <ListItemText primary={page.text} />
+          {entries.map((entry, index) => (
+              <Link href={`#${entry.href}`} key={index}>
+                <ListItem button key={entry.text}>
+                <ListItemText primary={entry.text} />
                 </ListItem>
               </Link>
           ))}

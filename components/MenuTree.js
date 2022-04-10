@@ -23,10 +23,10 @@ const renderTree = (nodes) => (
   return(
     <Drawer
         sx={{
-          width: drawerWidth,
+          maxWidth: drawerWidth,
           flexShrink: 0,
           '& .MuiDrawer-paper': {
-            width: drawerWidth,
+            maxWidth: drawerWidth,
             boxSizing: 'border-box',
           },
         }}
@@ -34,16 +34,17 @@ const renderTree = (nodes) => (
         anchor="right"
       >
         <Toolbar />
-        <Divider />
+        <Box sx={{overflow:'auto', mt:1,mr:1}}>
         <TreeView
-      aria-label="rich object"
-      defaultCollapseIcon={<ExpandMoreIcon />}
-      defaultExpanded={["0","6"]}
-      defaultExpandIcon={<ChevronRightIcon />}
-      sx={{ height: 210, flexGrow: 1, maxWidth: drawerWidth, overflowY: 'auto' }}
-    >
-      {renderTree(nodes)}
-      </TreeView>
+          aria-label="rich object"
+          defaultCollapseIcon={<ExpandMoreIcon />}
+          defaultExpanded={["0","6"]}
+          defaultExpandIcon={<ChevronRightIcon />}
+          sx={{ flexGrow: 1, maxWidth: drawerWidth, overflowY: 'auto' }}
+        >
+          {renderTree(nodes)}
+        </TreeView>
+        </Box>
       </Drawer>
   )
 }

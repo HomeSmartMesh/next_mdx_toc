@@ -11,6 +11,7 @@ import {s} from 'hastscript'
 import rehypeAutolinkHeadings from 'rehype-autolink-headings'
 import { promises as fs } from 'fs'
 
+import {Stack, Box } from '@mui/material';
 import PanZoomSlide from '../components/PanZoomSlide'
 import MenuTree from '../components/MenuTree'
 
@@ -31,14 +32,15 @@ const content = s(
     })
   )
 
+//const headings = [{"level":1,"text":"Cluster 1 - Level 1","href":"cluster-1---level-1","id":"0","children":[{"level":2,"text":"Cluster 1 - Level 2","href":"cluster-1---level-2","id":"1","children":[{"level":3,"text":"Cluster 1 - Level 3","href":"cluster-1---level-3","id":"2"}]},{"level":2,"text":"Cluster 1 - back to 2","href":"cluster-1---back-to-2","id":"3","children":[{"level":3,"text":"Cluster 1 - b2 - Level 3","href":"cluster-1---b2---level-3","id":"4"}]},{"level":2,"text":"long list section test","href":"long-list-section-test","id":"5"}]},{"level":1,"text":"More Headings Level 1","href":"more-headings-level-1","id":"6","children":[{"level":2,"text":"More Headings Level 2","href":"more-headings-level-2","id":"7"},{"level":2,"text":"long list section test","href":"long-list-section-test-1","id":"8"},{"level":2,"text":"More Headings Level 2","href":"more-headings-level-2-1","id":"9"}]}]
 export default function RemotePage({ source,headings }) {
   return (
     <>
       {source.frontmatter.title&&
       <title>{source.frontmatter.title}</title>
       }
-      <MenuTree nodes={headings}/>
-      <MDXRemote {...source} components={components} scope={source.frontmatter}/>
+        <MenuTree nodes={headings}/>
+        <MDXRemote {...source} components={components} scope={source.frontmatter}/>
     </>
   )
 }

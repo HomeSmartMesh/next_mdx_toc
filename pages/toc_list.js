@@ -32,13 +32,12 @@ const content = s(
   )
 
 export default function RemotePage({ source,headings }) {
-  console.log(headings)
   return (
     <>
       {source.frontmatter.title&&
       <title>{source.frontmatter.title}</title>
       }
-      <MenuList pages={headings}/>
+      <MenuList entries={headings}/>
       <MDXRemote {...source} components={components} scope={source.frontmatter}/>
     </>
   )
