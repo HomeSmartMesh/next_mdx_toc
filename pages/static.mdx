@@ -5,16 +5,19 @@ This mdx file path is "`pages/static.mdx`"
 * it is rendered with the config change `withMDX` in `next.config.js`
 * it did not require remote mdx or any associated `.js` page
 # React Component Slide
-To add a ract component in a static mdx, it is necessary to add the component import
+To add a ract component in a static mdx, it is necessary to add the component import which is quite inconvenient as it requires the contributers to understand how the framework is operating and is polluting the readme document.
 ```jsx
 import PanZoomSlide from '../components/PanZoomSlide'
 ```
 
-it is possible to add a react Slide component like this 
+it is possible afterwards to add a react Slide component like this 
 ```jsx
 <PanZoomSlide src="tiger.svg" menu/>
 ```
 <PanZoomSlide src="tiger.svg" menu/>
+
+# Styles
+The page also has no styles per default, it is styled with the global html css though
 
 # Long Page
 
@@ -43,3 +46,11 @@ This long text allows to scroll the page and see interaction with the app bar
 11
 
 12
+
+13
+
+14
+
+15
+
+16

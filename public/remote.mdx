@@ -13,16 +13,33 @@ it is possible to add a react Slide component like this without any import as th
 
 # Github Flavored Markdown
 
+the following markdown
+```md
+* https://github.com/HomeSmartMesh/next_mdx_toc
+* [x] this is done
+* [ ] this is not done
+```
+will result in
+
 * https://github.com/HomeSmartMesh/next_mdx_toc
 * [x] this is done
 * [ ] this is not done
 
 
 ## test highlight
+code highlighting is used, so that the following markdown text
+```md
+const components = { PanZoomSlide }
+```
+turns into colored code
 ```js
 const components = { PanZoomSlide }
 ```
-
+The color style is selected by importing the required style sheet
+```js
+import 'highlight.js/styles/default.css'
+```
+[link to the import line in github](https://github.com/HomeSmartMesh/next_mdx_toc/blob/22c4a04014260cc64ef51aab0a01dd7b85d4ba01/pages/index.js#L8)
 ## Table
 
 | Header 1      | Header 2      | Header 3  |
