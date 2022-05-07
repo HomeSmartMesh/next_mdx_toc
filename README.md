@@ -1,7 +1,5 @@
 # Live demo
-deployed on github pages
-
-http://www.homesmartmesh.com/next_mdx_toc/
+http://microwebstacks.github.io/next_mdx_toc/
 
 # next mdx toc
 * next.js
